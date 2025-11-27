@@ -1,8 +1,11 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 export default function Cotiza() {
+  const searchParams = useSearchParams();
+
   const [projectType, setProjectType] = useState("");
   const [area, setArea] = useState("");
   const [district, setDistrict] = useState("");
@@ -11,19 +14,13 @@ export default function Cotiza() {
   const [name, setName] = useState("");
   const [notes, setNotes] = useState("");
 
-  // Lee ?tipo=... de la URL y preselecciona el tipo de proyecto
+  // ✅ Leer el tipo de proyecto desde la URL cuando venimos desde "Cotizar este servicio"
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    try {
-      const url = new URL(window.location.href);
-      const tipoParam = url.searchParams.get("tipo");
-      if (tipoParam) {
-        setProjectType(tipoParam);
-      }
-    } catch {
-      // si algo falla con la URL, simplemente no hacemos nada
+    const tipoFromUrl = searchParams.get("tipo");
+    if (tipoFromUrl) {
+      setProjectType(tipoFromUrl);
     }
-  }, []);
+  }, [searchParams]);
 
   const whatsappMessage = useMemo(() => {
     const lines = [
@@ -106,19 +103,15 @@ export default function Cotiza() {
                 className="w-full rounded-xl border border-madera/15 bg-white/80 px-3 py-2"
               >
                 <option value="">Selecciona una opción</option>
-
-                {/* Nuevos servicios de la sección SERVICIOS */}
-                <option>Techo sol y sombra</option>
-                <option>Diseño y ejecución de proyecto de terraza</option>
-                <option>Proyecto estación de parrilla</option>
-                <option>Otro tipo de proyecto al aire libre</option>
-
-                {/* Opciones originales que ya manejabas */}
                 <option>Terraza de departamento</option>
                 <option>Azotea completa</option>
                 <option>Patio interior</option>
                 <option>Terraza corporativa</option>
                 <option>Proyecto integral</option>
+                <option>Techo sol y sombra</option>
+                <option>Diseño y ejecución de proyecto de terraza</option>
+                <option>Proyecto estación de parrilla</option>
+                <option>Otro tipo de proyecto al aire libre</option>
               </select>
             </div>
             <div className="space-y-1">
@@ -180,7 +173,7 @@ export default function Cotiza() {
               className="w-full rounded-xl border border-madera/15 bg-white/80 px-3 py-2"
             >
               <option value="">Selecciona una opción</option>
-              <option value="Por definir">Por definir</option>
+              <option>Por definir</option>
               <option>Hasta 5,000 USD</option>
               <option>5,000 - 12,000 USD</option>
               <option>12,000 - 25,000 USD</option>
