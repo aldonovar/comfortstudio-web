@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 
 const mainSections = [
-  { id: "inicio", key: "inicio", label: "Inicio", href: "/inicio" },
+  { id: "inicio", key: "inicio", label: "Inicio", href: "/" },
   { id: "servicios", key: "servicios", label: "Servicios", href: "/servicios" },
   { id: "proyectos", key: "proyectos", label: "Proyectos", href: "/proyectos" },
   { id: "cotiza", key: "cotiza", label: "Cotiza", href: "/cotiza" },
