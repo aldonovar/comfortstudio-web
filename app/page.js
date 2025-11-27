@@ -5,7 +5,6 @@ import Proceso from "../components/Proceso";
 import Estudio from "../components/Estudio";
 import Cotiza from "../components/Cotiza";
 import Contacto from "../components/Contacto";
-import Footer from "../components/Footer";
 
 export default function HomePage() {
   return (
@@ -17,7 +16,6 @@ export default function HomePage() {
       <Estudio />
       <Cotiza />
       <Contacto />
-      <Footer />
     </>
   );
 }
