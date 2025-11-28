@@ -20,22 +20,15 @@ export default function Contacto() {
         },
       });
 
-      // Subtle Fade Up for Header
+      // Simple Fade Up for Header
       tl.from(".contact-content", {
         y: 30,
         opacity: 0,
-        duration: 1.2,
+        duration: 1,
         ease: "power2.out"
       });
 
-      // Staggered Fade for Cards
-      tl.from(".contact-card", {
-        y: 20,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.1,
-        ease: "power2.out",
-      }, "-=0.8");
+      // Cards are static to ensure visibility (removed stagger animation)
 
     }, sectionRef);
 
@@ -83,23 +76,23 @@ export default function Contacto() {
           <a
             href="https://wa.me/51936230958"
             target="_blank"
-            className="contact-card group p-8 rounded-3xl bg-white/[0.02] border border-white/5 hover:border-white/10 hover:bg-white/[0.04] transition-all duration-700 flex flex-col justify-between min-h-[260px] relative overflow-hidden"
+            className="contact-card group p-8 rounded-3xl bg-white/[0.08] border border-white/10 hover:border-white/20 hover:bg-white/[0.12] transition-all duration-500 flex flex-col justify-between min-h-[260px] relative overflow-hidden"
           >
             <div className="flex justify-between items-start">
               <div className="p-3 rounded-full bg-white/5 text-terracota group-hover:scale-110 transition-transform duration-500">
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.04 2C6.57 2 2.21 6.21 2.21 11.57c0 1.92.54 3.7 1.49 5.24L2 22l5.34-1.67a9.9 9.9 0 0 0 4.7 1.2h.01c5.47 0 9.83-4.21 9.83-9.57C21.88 6.21 17.51 2 12.04 2Zm0 17.35c-1.53 0-3.03-.41-4.34-1.2l-.31-.18-3.17.99.98-3.02-.2-.31a7.42 7.42 0 0 1-1.16-3.9c0-4.1 3.39-7.44 7.57-7.44 4.17 0 7.57 3.34 7.57 7.44 0 4.1-3.4 7.44-7.57 7.44Zm4.12-5.59c-.22-.11-1.3-.64-1.5-.71-.2-.07-.35-.11-.5.11-.15.22-.57.71-.7.86-.13.15-.26.16-.48.05-.22-.11-.93-.36-1.78-1.14-.65-.59-1.09-1.32-1.22-1.54-.13-.22-.01-.34.1-.45.1-.1.22-.26.33-.39.11-.13.15-.22.22-.37.07-.15.04-.27-.02-.38-.06-.11-.5-1.2-.69-1.64-.18-.44-.37-.38-.5-.39h-.43c-.15 0-.39.06-.59.28-.2.22-.77.75-.77 1.83 0 1.08.79 2.13.9 2.28.11.15 1.55 2.43 3.77 3.31.53.22.94.35 1.27.45.53.17 1.02.15 1.4.09.43-.06 1.3-.53 1.48-1.05.18-.52.18-.96.13-1.05-.05-.09-.2-.15-.42-.26Z" /></svg>
               </div>
-              <span className="text-[10px] uppercase tracking-widest text-white/30 group-hover:text-white/60 transition-colors">Chat</span>
+              <span className="text-[10px] uppercase tracking-widest text-white/40 group-hover:text-white/70 transition-colors">Chat</span>
             </div>
 
             <div className="space-y-2">
               <h3 className="font-serif text-xl text-crema/90">WhatsApp</h3>
-              <p className="text-xs text-crema/40 font-light leading-relaxed">
+              <p className="text-xs text-crema/60 font-light leading-relaxed">
                 Respuesta rápida para consultas puntuales.
               </p>
             </div>
 
-            <div className="pt-6 border-t border-white/5 flex items-center gap-2 text-[10px] uppercase tracking-widest text-terracota opacity-80 group-hover:opacity-100 transition-opacity">
+            <div className="pt-6 border-t border-white/10 flex items-center gap-2 text-[10px] uppercase tracking-widest text-terracota opacity-90 group-hover:opacity-100 transition-opacity">
               Iniciar <span className="text-sm">→</span>
             </div>
           </a>
@@ -107,23 +100,23 @@ export default function Contacto() {
           {/* 2. Email */}
           <a
             href="mailto:contacto@comfortstudio.pe"
-            className="contact-card group p-8 rounded-3xl bg-white/[0.02] border border-white/5 hover:border-white/10 hover:bg-white/[0.04] transition-all duration-700 flex flex-col justify-between min-h-[260px] relative overflow-hidden"
+            className="contact-card group p-8 rounded-3xl bg-white/[0.08] border border-white/10 hover:border-white/20 hover:bg-white/[0.12] transition-all duration-500 flex flex-col justify-between min-h-[260px] relative overflow-hidden"
           >
             <div className="flex justify-between items-start">
               <div className="p-3 rounded-full bg-white/5 text-terracota group-hover:scale-110 transition-transform duration-500">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
               </div>
-              <span className="text-[10px] uppercase tracking-widest text-white/30 group-hover:text-white/60 transition-colors">Mail</span>
+              <span className="text-[10px] uppercase tracking-widest text-white/40 group-hover:text-white/70 transition-colors">Mail</span>
             </div>
 
             <div className="space-y-2">
               <h3 className="font-serif text-xl text-crema/90">Correo</h3>
-              <p className="text-xs text-crema/40 font-light leading-relaxed">
+              <p className="text-xs text-crema/60 font-light leading-relaxed">
                 Para envío de planos y formalidades.
               </p>
             </div>
 
-            <div className="pt-6 border-t border-white/5 flex items-center gap-2 text-[10px] uppercase tracking-widest text-terracota opacity-80 group-hover:opacity-100 transition-opacity">
+            <div className="pt-6 border-t border-white/10 flex items-center gap-2 text-[10px] uppercase tracking-widest text-terracota opacity-90 group-hover:opacity-100 transition-opacity">
               Enviar <span className="text-sm">→</span>
             </div>
           </a>
@@ -131,18 +124,18 @@ export default function Contacto() {
           {/* 3. Calendly Trigger */}
           <button
             onClick={() => setIsModalOpen(true)}
-            className="contact-card group p-8 rounded-3xl bg-terracota/10 border border-terracota/20 hover:bg-terracota/20 hover:border-terracota/30 transition-all duration-700 flex flex-col justify-between min-h-[260px] relative overflow-hidden text-left"
+            className="contact-card group p-8 rounded-3xl bg-terracota/15 border border-terracota/30 hover:bg-terracota/25 hover:border-terracota/40 transition-all duration-500 flex flex-col justify-between min-h-[260px] relative overflow-hidden text-left"
           >
             <div className="flex justify-between items-start">
               <div className="p-3 rounded-full bg-terracota/20 text-terracota group-hover:scale-110 transition-transform duration-500">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
               </div>
-              <span className="text-[10px] uppercase tracking-widest text-terracota/60 group-hover:text-terracota transition-colors">Video</span>
+              <span className="text-[10px] uppercase tracking-widest text-terracota/70 group-hover:text-terracota transition-colors">Video</span>
             </div>
 
             <div className="space-y-2">
               <h3 className="font-serif text-xl text-crema/90">Reunión Virtual</h3>
-              <p className="text-xs text-crema/50 font-light leading-relaxed">
+              <p className="text-xs text-crema/60 font-light leading-relaxed">
                 Agenda 30 min con un arquitecto del equipo.
               </p>
             </div>
@@ -153,22 +146,22 @@ export default function Contacto() {
           </button>
 
           {/* 4. Location */}
-          <div className="contact-card p-8 rounded-3xl bg-white/[0.02] border border-white/5 flex flex-col justify-between min-h-[260px]">
+          <div className="contact-card p-8 rounded-3xl bg-white/[0.08] border border-white/10 flex flex-col justify-between min-h-[260px]">
             <div className="flex justify-between items-start">
               <div className="p-3 rounded-full bg-white/5 text-terracota">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
               </div>
-              <span className="text-[10px] uppercase tracking-widest text-white/30">Studio</span>
+              <span className="text-[10px] uppercase tracking-widest text-white/40">Studio</span>
             </div>
 
             <div className="space-y-2">
               <h3 className="font-serif text-xl text-crema/90">Lima, Perú</h3>
-              <p className="text-xs text-crema/40 font-light leading-relaxed">
+              <p className="text-xs text-crema/60 font-light leading-relaxed">
                 Proyectos integrales en Lima Metropolitana.
               </p>
             </div>
 
-            <div className="pt-6 border-t border-white/5 flex items-center gap-2 text-[10px] uppercase tracking-widest text-white/30 cursor-default">
+            <div className="pt-6 border-t border-white/10 flex items-center gap-2 text-[10px] uppercase tracking-widest text-white/40 cursor-default">
               Sede Central
             </div>
           </div>
