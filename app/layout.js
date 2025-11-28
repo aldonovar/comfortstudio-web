@@ -5,7 +5,9 @@ import SmoothScroller from "../components/SmoothScroller";
 import FloatingCTA from "../components/FloatingCTA";
 import PageTransition from "../components/PageTransition";
 import Footer from "../components/Footer";
-import Scene from "../components/canvas/Scene";
+import dynamic from "next/dynamic";
+
+const Scene = dynamic(() => import("../components/canvas/Scene"), { ssr: false });
 
 export const metadata = {
   title: "Comfort Studio — Arquitectura Exterior",
