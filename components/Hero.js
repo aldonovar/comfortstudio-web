@@ -43,16 +43,6 @@ export default function Hero() {
           "-=0.45"
         )
         .from(
-          ".hero-cta",
-          {
-            y: 18,
-            opacity: 0,
-            duration: 0.65,
-            stagger: 0.08,
-          },
-          "-=0.4"
-        )
-        .from(
           ".hero-card",
           {
             y: 40,
@@ -97,18 +87,16 @@ export default function Hero() {
         ref={videoContainerRef}
         className="absolute inset-0 z-0 h-[120%] w-full"
       >
-        <div className="relative h-full w-full">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="absolute inset-0 h-full w-full object-cover"
-            src="https://cdn.coverr.co/videos/coverr-modern-architecture-1576/1080p.mp4"
-          />
-          {/* Overlay oscuro para legibilidad */}
-          <div className="absolute inset-0 bg-black/50 pointer-events-none" />
-        </div>
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 h-full w-full object-cover opacity-60"
+          src="https://cdn.coverr.co/videos/coverr-walking-by-a-wooden-wall-4608/1080p.mp4"
+        />
+        {/* Overlay oscuro para legibilidad */}
+        <div className="absolute inset-0 bg-black/40 pointer-events-none" />
       </div>
 
       {/* Contenido */}
