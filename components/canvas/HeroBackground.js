@@ -54,6 +54,14 @@ const HeroVideoMaterial = shaderMaterial(
 extend({ HeroVideoMaterial });
 
 export default function HeroBackground({ videoUrl, className, ...props }) {
+    return (
+        <View className={className} {...props}>
+            <HeroScene videoUrl={videoUrl} />
+        </View>
+    );
+}
+
+function HeroScene({ videoUrl }) {
     const materialRef = useRef();
     const texture = useVideoTexture(videoUrl);
     const [mouse, setMouse] = useState([0.5, 0.5]);
@@ -69,32 +77,15 @@ export default function HeroBackground({ videoUrl, className, ...props }) {
         }
     });
 
-    const handleMouseMove = (e) => {
-        // Normalize mouse coordinates to 0..1
-        // This is an approximation; for exact UV mapping we'd need raycasting, 
-        // but for a background effect this is sufficient and performant.
-        // We assume the View covers the element.
-        // Actually, let's just use the relative coordinates if possible, 
-        // or just pass global normalized mouse.
-        // For simplicity, we'll just use a center-based interaction or simple movement.
-        // Let's try to get relative coordinates from the event if it bubbles from the DOM tracker.
-        // But View tracks a DOM element. The pointer event on the DOM element 
-        // doesn't automatically map to UVs without raycasting.
-        // We'll skip precise mouse tracking for now and just use a gentle auto-animation 
-        // plus maybe global mouse influence if easy.
-    };
-
     return (
-        <View className={className} {...props}>
-            <mesh>
-                <planeGeometry args={[2, 2, 32, 32]} />
-                {/* @ts-ignore */}
-                <heroVideoMaterial
-                    ref={materialRef}
-                    uTexture={texture}
-                    toneMapped={false}
-                />
-            </mesh>
-        </View>
+        <mesh>
+            <planeGeometry args={[2, 2, 32, 32]} />
+            {/* @ts-ignore */}
+            <heroVideoMaterial
+                ref={materialRef}
+                uTexture={texture}
+                toneMapped={false}
+            />
+        </mesh>
     );
 }

@@ -48,6 +48,14 @@ const WaveShaderMaterial = shaderMaterial(
 extend({ WaveShaderMaterial });
 
 export default function ProjectImage({ imgUrl, className, ...props }) {
+    return (
+        <View className={className} {...props}>
+            <ProjectImageScene imgUrl={imgUrl} />
+        </View>
+    );
+}
+
+function ProjectImageScene({ imgUrl }) {
     const meshRef = useRef();
     const materialRef = useRef();
     const texture = useLoader(TextureLoader, imgUrl);
@@ -67,20 +75,18 @@ export default function ProjectImage({ imgUrl, className, ...props }) {
     });
 
     return (
-        <View className={className} {...props}>
-            <mesh
-                ref={meshRef}
-                onPointerOver={() => setHover(true)}
-                onPointerOut={() => setHover(false)}
-            >
-                <planeGeometry args={[2, 2, 16, 16]} />
-                {/* @ts-ignore */}
-                <waveShaderMaterial
-                    ref={materialRef}
-                    uTexture={texture}
-                    transparent
-                />
-            </mesh>
-        </View>
+        <mesh
+            ref={meshRef}
+            onPointerOver={() => setHover(true)}
+            onPointerOut={() => setHover(false)}
+        >
+            <planeGeometry args={[2, 2, 16, 16]} />
+            {/* @ts-ignore */}
+            <waveShaderMaterial
+                ref={materialRef}
+                uTexture={texture}
+                transparent
+            />
+        </mesh>
     );
 }
