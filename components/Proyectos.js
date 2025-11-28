@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, Suspense } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import dynamic from "next/dynamic";
@@ -298,8 +298,8 @@ export default function Proyectos() {
                     type="button"
                     onClick={() => setFilter(f.id)}
                     className={`rounded-full px-3.5 py-1.5 text-[0.78rem] uppercase tracking-[0.18em] transition-colors border ${isActive
-                        ? "bg-madera text-crema border-madera"
-                        : "bg-white/70 text-madera/75 border-madera/20 hover:border-madera/50"
+                      ? "bg-madera text-crema border-madera"
+                      : "bg-white/70 text-madera/75 border-madera/20 hover:border-madera/50"
                       }`}
                   >
                     {f.label}
@@ -332,10 +332,12 @@ export default function Proyectos() {
               >
                 {/* WebGL Image Background */}
                 <div className="absolute inset-0 z-0 opacity-40 mix-blend-overlay">
-                  <ProjectImage
-                    imgUrl={activeProject.image}
-                    className="w-full h-full"
-                  />
+                  <Suspense fallback={null}>
+                    <ProjectImage
+                      imgUrl={activeProject.image}
+                      className="w-full h-full"
+                    />
+                  </Suspense>
                 </div>
 
                 {/* Borde interno */}
@@ -449,8 +451,8 @@ export default function Proyectos() {
                 <article
                   key={project.id}
                   className={`project-card cursor-pointer rounded-3xl border backdrop-blur-sm px-4 py-4 md:px-5 md:py-5 transition-all ${isActive
-                      ? "bg-white/95 border-madera/40 shadow-[0_18px_60px_rgba(0,0,0,0.12)] scale-[1.01]"
-                      : "bg-white/75 border-madera/12 hover:border-madera/40 hover:bg-white/95"
+                    ? "bg-white/95 border-madera/40 shadow-[0_18px_60px_rgba(0,0,0,0.12)] scale-[1.01]"
+                    : "bg-white/75 border-madera/12 hover:border-madera/40 hover:bg-white/95"
                     }`}
                   onMouseEnter={() => setActiveId(project.id)}
                   onFocus={() => setActiveId(project.id)}

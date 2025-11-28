@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, Suspense } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import dynamic from "next/dynamic";
@@ -105,10 +105,12 @@ export default function Hero() {
         className="absolute inset-0 z-0 h-[120%] w-full" // 120% height for parallax
       >
         <div className="relative h-full w-full">
-          <HeroBackground
-            videoUrl="https://videos.pexels.com/video-files/3205633/3205633-hd_1920_1080_25fps.mp4"
-            className="absolute inset-0 h-full w-full"
-          />
+          <Suspense fallback={<div className="absolute inset-0 bg-madera" />}>
+            <HeroBackground
+              videoUrl="https://videos.pexels.com/video-files/3205633/3205633-hd_1920_1080_25fps.mp4"
+              className="absolute inset-0 h-full w-full"
+            />
+          </Suspense>
           {/* Overlay oscuro para legibilidad */}
           <div className="absolute inset-0 bg-black/40 pointer-events-none" />
         </div>

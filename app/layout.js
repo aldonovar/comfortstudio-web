@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import "./globals.css";
 import Navbar from "../components/Navbar";
 import Preloader from "../components/Preloader";
@@ -16,7 +17,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="es">
+    <html lang="es" suppressHydrationWarning>
       <head>
         {/* Tailwind por CDN */}
         <script src="https://cdn.tailwindcss.com"></script>
@@ -49,7 +50,9 @@ export default function RootLayout({ children }) {
         <FloatingCTA />
 
         {/* Global 3D Scene */}
-        <Scene />
+        <Suspense fallback={null}>
+          <Scene />
+        </Suspense>
 
         <PageTransition>
           <main className="relative z-10 min-h-screen">{children}</main>
