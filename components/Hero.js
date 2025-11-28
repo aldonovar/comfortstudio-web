@@ -1,15 +1,8 @@
 "use client";
 
-import { useEffect, useRef, Suspense } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import dynamic from "next/dynamic";
-
-// Dynamically import HeroBackground
-const HeroBackground = dynamic(
-  () => import("../components/canvas/HeroBackground"),
-  { ssr: false }
-);
 
 export default function Hero() {
   const containerRef = useRef(null);
@@ -48,28 +41,26 @@ export default function Hero() {
             duration: 0.7,
           },
           "-=0.45"
-        );
-      /*
-      .from(
-        ".hero-cta",
-        {
-          y: 18,
-          opacity: 0,
-          duration: 0.65,
-          stagger: 0.08,
-        },
-        "-=0.4"
-      )
-      */
-      tl.from(
-        ".hero-card",
-        {
-          y: 40,
-          opacity: 0,
-          duration: 0.9,
-        },
-        "-=0.6"
-      )
+        )
+        .from(
+          ".hero-cta",
+          {
+            y: 18,
+            opacity: 0,
+            duration: 0.65,
+            stagger: 0.08,
+          },
+          "-=0.4"
+        )
+        .from(
+          ".hero-card",
+          {
+            y: 40,
+            opacity: 0,
+            duration: 0.9,
+          },
+          "-=0.6"
+        )
         .from(
           ".hero-meta",
           {
@@ -80,7 +71,7 @@ export default function Hero() {
           "-=0.4"
         );
 
-      // Parallax del video container (ahora contiene el Canvas View)
+      // Parallax del video container
       gsap.to(videoContainerRef.current, {
         yPercent: 20,
         ease: "none",
@@ -101,20 +92,22 @@ export default function Hero() {
       ref={containerRef}
       className="relative min-h-screen w-full overflow-hidden bg-madera text-crema"
     >
-      {/* Background Video (WebGL) */}
+      {/* Background Video (HTML5 Standard) */}
       <div
         ref={videoContainerRef}
-        className="absolute inset-0 z-0 h-[120%] w-full" // 120% height for parallax
+        className="absolute inset-0 z-0 h-[120%] w-full"
       >
         <div className="relative h-full w-full">
-          <Suspense fallback={<div className="absolute inset-0 bg-madera" />}>
-            <HeroBackground
-              videoUrl="https://cdn.coverr.co/videos/coverr-walking-by-a-wooden-wall-4608/1080p.mp4"
-              className="absolute inset-0 h-full w-full"
-            />
-          </Suspense>
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 h-full w-full object-cover"
+            src="https://cdn.coverr.co/videos/coverr-modern-architecture-1576/1080p.mp4"
+          />
           {/* Overlay oscuro para legibilidad */}
-          <div className="absolute inset-0 bg-black/30 pointer-events-none" />
+          <div className="absolute inset-0 bg-black/50 pointer-events-none" />
         </div>
       </div>
 
@@ -143,14 +136,32 @@ export default function Hero() {
                 href="#cotiza"
                 className="hero-cta group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-crema px-8 py-4 text-sm font-bold uppercase tracking-widest text-madera transition-all duration-300 hover:scale-105 hover:bg-white"
               >
-                <span className="relative z-10">Iniciar Proyecto</span>
+                <span className="relative z-10">Cotizar Proyecto</span>
                 <div className="absolute inset-0 -translate-x-full bg-terracota transition-transform duration-300 group-hover:translate-x-0" />
               </a>
               <a
-                href="#proyectos"
+                href="https://calendly.com/" // Placeholder, user can update
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hero-cta group inline-flex items-center gap-2 rounded-full border border-crema/30 px-8 py-4 text-sm font-bold uppercase tracking-widest text-crema backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-crema/10"
               >
-                <span>Ver Portafolio</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                <span>Agendar Reunión Virtual</span>
               </a>
             </div>
 
