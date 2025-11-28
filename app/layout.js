@@ -1,65 +1,30 @@
-import { Suspense } from "react";
+"use client";
+
+import { ReactLenis } from "@studio-freight/react-lenis";
 import "./globals.css";
 import Navbar from "../components/Navbar";
-import Preloader from "../components/Preloader";
-import SmoothScroller from "../components/SmoothScroller";
-import FloatingCTA from "../components/FloatingCTA";
-import PageTransition from "../components/PageTransition";
 import Footer from "../components/Footer";
-import dynamic from "next/dynamic";
-
-const Scene = dynamic(() => import("../components/canvas/Scene"), { ssr: false });
-
-export const metadata = {
-  title: "Comfort Studio — Arquitectura Exterior",
-  description: "Diseño y ejecución de terrazas premium en Lima Metropolitana.",
-};
+import PageTransition from "../components/PageTransition";
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="es" suppressHydrationWarning>
+    <html lang="es">
       <head>
-        {/* Tailwind por CDN */}
-        <script src="https://cdn.tailwindcss.com"></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              tailwind.config = {
-                theme: {
-                  extend: {
-                    colors: {
-                      crema: '#f9f3ec',
-                      terracota: '#b07357',
-                      madera: '#1e1713',
-                    },
-                    fontFamily: {
-                      sans: ['system-ui', 'sans-serif'],
-                      serif: ['Cormorant Garamond', 'serif'],
-                    },
-                  }
-                }
-              }
-            `,
-          }}
+        <title>Comfort Studio | Arquitectura de Terrazas</title>
+        <meta
+          name="description"
+          content="Especialistas en diseño y ejecución de terrazas, azoteas y patios en Lima. Transformamos espacios en experiencias de vida."
         />
+        <link rel="icon" href="/favicon.ico" />
       </head>
-      <body className="bg-crema text-madera overflow-x-hidden antialiased">
-        <SmoothScroller />
-        <Preloader />
-        <Navbar />
-        <FloatingCTA />
-
-        {/* Global 3D Scene */}
-        <Suspense fallback={null}>
-          <Scene />
-        </Suspense>
-
-        <PageTransition>
-          <main className="relative z-10 min-h-screen">{children}</main>
-        </PageTransition>
-        <Footer />
-        {/* Textura de ruido sutil */}
-        <div className="pointer-events-none fixed inset-0 opacity-[0.06] bg-[url('/noise.png')] mix-blend-soft-light" />
+      <body className="antialiased bg-crema text-madera selection:bg-terracota selection:text-white">
+        <ReactLenis root options={{ lerp: 0.08, duration: 1.2, smoothWheel: true }}>
+          <Navbar />
+          <PageTransition>
+            {children}
+          </PageTransition>
+          <Footer />
+        </ReactLenis>
       </body>
     </html>
   );
