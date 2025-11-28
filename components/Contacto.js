@@ -28,7 +28,7 @@ export default function Contacto() {
         ease: "power2.out"
       });
 
-      // Cards are static to ensure visibility (removed stagger animation)
+      // Cards are static to ensure visibility
 
     }, sectionRef);
 
@@ -47,11 +47,17 @@ export default function Contacto() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-40 bg-[#050505] text-crema overflow-hidden min-h-screen flex flex-col justify-center"
+      className="relative py-40 text-crema overflow-hidden min-h-screen flex flex-col justify-center"
     >
-      {/* Atmospheric Background */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-terracota/5 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] mix-blend-overlay pointer-events-none" />
+      {/* Animated Background Layer */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a1a] via-[#2a2522] to-[#151515] bg-[length:400%_400%] animate-gradient-slow" />
+        <div className="absolute inset-0 opacity-[0.04] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay pointer-events-none" />
+
+        {/* Floating Orbs for extra life */}
+        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-terracota/10 rounded-full blur-[120px] animate-pulse-slow pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-madera/20 rounded-full blur-[100px] animate-float-slow pointer-events-none" />
+      </div>
 
       <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 w-full">
 
@@ -76,7 +82,7 @@ export default function Contacto() {
           <a
             href="https://wa.me/51936230958"
             target="_blank"
-            className="contact-card group p-8 rounded-3xl bg-white/[0.08] border border-white/10 hover:border-white/20 hover:bg-white/[0.12] transition-all duration-500 flex flex-col justify-between min-h-[260px] relative overflow-hidden"
+            className="contact-card group p-8 rounded-3xl bg-white/[0.08] border border-white/10 hover:border-white/20 hover:bg-white/[0.12] transition-all duration-500 flex flex-col justify-between min-h-[260px] relative overflow-hidden backdrop-blur-sm"
           >
             <div className="flex justify-between items-start">
               <div className="p-3 rounded-full bg-white/5 text-terracota group-hover:scale-110 transition-transform duration-500">
@@ -100,7 +106,7 @@ export default function Contacto() {
           {/* 2. Email */}
           <a
             href="mailto:contacto@comfortstudio.pe"
-            className="contact-card group p-8 rounded-3xl bg-white/[0.08] border border-white/10 hover:border-white/20 hover:bg-white/[0.12] transition-all duration-500 flex flex-col justify-between min-h-[260px] relative overflow-hidden"
+            className="contact-card group p-8 rounded-3xl bg-white/[0.08] border border-white/10 hover:border-white/20 hover:bg-white/[0.12] transition-all duration-500 flex flex-col justify-between min-h-[260px] relative overflow-hidden backdrop-blur-sm"
           >
             <div className="flex justify-between items-start">
               <div className="p-3 rounded-full bg-white/5 text-terracota group-hover:scale-110 transition-transform duration-500">
@@ -124,7 +130,7 @@ export default function Contacto() {
           {/* 3. Calendly Trigger */}
           <button
             onClick={() => setIsModalOpen(true)}
-            className="contact-card group p-8 rounded-3xl bg-terracota/15 border border-terracota/30 hover:bg-terracota/25 hover:border-terracota/40 transition-all duration-500 flex flex-col justify-between min-h-[260px] relative overflow-hidden text-left"
+            className="contact-card group p-8 rounded-3xl bg-terracota/15 border border-terracota/30 hover:bg-terracota/25 hover:border-terracota/40 transition-all duration-500 flex flex-col justify-between min-h-[260px] relative overflow-hidden text-left backdrop-blur-sm"
           >
             <div className="flex justify-between items-start">
               <div className="p-3 rounded-full bg-terracota/20 text-terracota group-hover:scale-110 transition-transform duration-500">
@@ -146,7 +152,7 @@ export default function Contacto() {
           </button>
 
           {/* 4. Location */}
-          <div className="contact-card p-8 rounded-3xl bg-white/[0.08] border border-white/10 flex flex-col justify-between min-h-[260px]">
+          <div className="contact-card p-8 rounded-3xl bg-white/[0.08] border border-white/10 flex flex-col justify-between min-h-[260px] backdrop-blur-sm">
             <div className="flex justify-between items-start">
               <div className="p-3 rounded-full bg-white/5 text-terracota">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
@@ -201,6 +207,32 @@ export default function Contacto() {
           </div>
         </div>
       )}
+
+      {/* CSS for animations */}
+      <style jsx global>{`
+        @keyframes gradient-slow {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        .animate-gradient-slow {
+          animation: gradient-slow 15s ease infinite;
+        }
+        @keyframes float-slow {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-20px); }
+        }
+        .animate-float-slow {
+          animation: float-slow 8s ease-in-out infinite;
+        }
+        @keyframes pulse-slow {
+          0%, 100% { opacity: 0.3; transform: scale(1); }
+          50% { opacity: 0.6; transform: scale(1.05); }
+        }
+        .animate-pulse-slow {
+          animation: pulse-slow 6s ease-in-out infinite;
+        }
+      `}</style>
     </section>
   );
 }
